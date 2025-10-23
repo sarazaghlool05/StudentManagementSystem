@@ -64,9 +64,9 @@ public abstract class FileHandler implements StudentOps{
 
             System.out.println("Students loaded successfully: " + students.size());
 
-        /*}catch (FileNotFoundException e) {
+        }catch (FileNotFoundException e) {
             System.err.println("File not found. It will be created when you save.");
-            */
+
         } catch (IOException e) {
             System.err.println("Error reading students: " + e.getMessage());
         }
