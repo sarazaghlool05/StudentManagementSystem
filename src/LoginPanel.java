@@ -23,11 +23,20 @@ public class LoginPanel extends JPanel {
         JPasswordField passwordField = new JPasswordField(15);
         c.gridx = 1;
         add(passwordField, c);
-        JButton loginButton = new JButton("Login"); // button text
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 2; 
+        JButton loginButton = new JButton("Login");
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridwidth = 2;
         add(loginButton, c);
+        loginButton.addActionListener(e -> {
+            String username = userField.getText();
+            String password = passwordField.getText();
+            if(username.equals("admin") && password.equals("1234")) {
+                JOptionPane.showMessageDialog(this, "Login successful!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Wrong username or password!");
+            }
+        });
 
     }
 }
@@ -49,5 +58,4 @@ public static void main(String[] args) {
         // 4️⃣ Make it visible
         frame.setVisible(true);
     });
-}
-*/
+}*/
