@@ -29,11 +29,11 @@ public class MainFrame {
                 }
             });
 
-            // CardLayout main panel
+
             cardLayout = new CardLayout();
             mainPanel = new JPanel(cardLayout);
 
-            // Header panel with Back button
+
             headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
             backButton = new JButton("Back to Home");
             headerPanel.add(backButton);
