@@ -30,5 +30,27 @@ public class StudentManager extends FileHandler {
         saveToFile(students);
         return true;
     }
+    public Student searchStudent(Student s){
+        for(int i = 0; i < students.size(); i++) {
+            Student exist = students.get(i);
+            if (exist.getId().equals(s.getId())) {
+                return s;
+            }
+        }
+            return null;
+        }
     
+    public ArrayList<Student> viewStudentsSortedById() {
+        ArrayList<Student> sorted = new ArrayList<>(students);
+        Collections.sort(sorted, new Comparator<Student>() {
+            public int compare(Student s1, Student s2) {
+                return s1.getId().compareTo(s2.getId());
+            }
+        });
+        return sorted;
+    }
+
+    public boolean updateStudent(Student s){
+
+    }
 }
