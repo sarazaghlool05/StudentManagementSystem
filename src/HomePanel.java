@@ -7,7 +7,7 @@ public class HomePanel extends JPanel {
     private CardLayout cardLayout;
     private JPanel mainPanel;
 
-    public HomePanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel) {
+    public HomePanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel,ViewStudentsPanel viewPanel) {
         this.manager = manager;
         this.cardLayout = cardLayout;
         this.mainPanel = mainPanel;
@@ -38,7 +38,11 @@ public class HomePanel extends JPanel {
         add(buttonPanel, BorderLayout.CENTER);
 
         addButton.addActionListener(e -> cardLayout.show(mainPanel, "Add"));
-        viewButton.addActionListener(e -> cardLayout.show(mainPanel, "View"));
+        viewButton.addActionListener(e -> {
+            cardLayout.show(mainPanel, "View");
+            viewPanel.loadStudents(); // 🟢 load when View button is pressed
+        });
+
         updateButton.addActionListener(e -> cardLayout.show(mainPanel, "Search or Update"));
         deleteButton.addActionListener(e -> cardLayout.show(mainPanel, "Delete"));
     }
