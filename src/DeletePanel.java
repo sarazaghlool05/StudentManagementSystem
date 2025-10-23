@@ -6,9 +6,9 @@ public class DeletePanel extends JPanel {
 
     public DeletePanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel) {
         this.manager = manager;
-        setLayout(new BorderLayout());
-        GridBagConstraints c=new GridBagConstraints();
-        c.insets = new Insets(5,5,5,5);
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(5, 5, 5, 5);
         c.gridx = 0;
         c.gridy = 0;
         JLabel idLabel = new JLabel("Enter Student ID to delete:");
@@ -23,6 +23,25 @@ public class DeletePanel extends JPanel {
         c.gridy = 1;
         c.gridwidth = 2;
         add(deleteButton, c);
-        
-
+        deleteButton.addActionListener(e -> {
+            String id = idField.getText().trim();
+            if (id.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter Student ID");
+                return;
+            }
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "Are you sure you want to delete this student?",
+                    "Confirm Delete",
+                    JOptionPane.YES_NO_OPTION);
+            if(confirm == JOptionPane.YES_OPTION) {
+                boolean deleted = manager.deleteStudent(id);
+                if(deleted) {
+                    JOptionPane.showMessageDialog(this, "Student deleted successfully!");
+                    idField.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Student ID not found!");
+                }
+            }
+        });
+    }
 }
