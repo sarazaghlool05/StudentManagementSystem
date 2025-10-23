@@ -13,7 +13,7 @@ public abstract class FileHandler implements StudentOps{
     public static void saveToFile(List<Student> students) {
         BufferedWriter writer = null;
         try {
-            writer = new BufferedWriter(new FileWriter(FILE_NAME,true));
+            writer = new BufferedWriter(new FileWriter(FILE_NAME));
 
             for (int i = 0; i < students.size(); i++) {
                 Student s = students.get(i);
