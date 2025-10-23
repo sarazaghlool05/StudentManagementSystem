@@ -1,10 +1,10 @@
-import javax.swing.*;  // for JFrame, JPanel, JButton, etc.
-import java.awt.*;      // for layouts like CardLayout
+import javax.swing.*;
+import java.awt.*;     
 
 public class MainFrame {
   private  JFrame frame;
   private CardLayout cardLayout ;
-  private JPanel maimPanel;
+  private JPanel mainPanel;
   private StudentManager manager;
 
   public MainFrame() {
@@ -32,6 +32,9 @@ public class MainFrame {
          frame.add(mainPanel);
          frame.setVisible(true);
          cardLayout.show(mainPanel,"Login");
-     })
+     });
   }
+}
+public static void main(String[] args) {
+    new MainFrame();
 }
