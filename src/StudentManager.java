@@ -7,12 +7,8 @@ public class StudentManager extends FileHandler {
 
     public static ArrayList<Student> students;
 
-
-
-
     public StudentManager() {
-        students = new ArrayList<>();
-        students = loadFromFile();
+        students = FileHandler.loadFromFile();
     }
     public ArrayList<Student> getStudents() {
         return students;

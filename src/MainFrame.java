@@ -46,7 +46,7 @@ public class MainFrame {
                 headerPanel.setVisible(false);
             });
 
-            ViewStudentsPanel viewPanel = new ViewStudentsPanel(mainPanel);
+            ViewStudentsPanel viewPanel = new ViewStudentsPanel(manager);
             HomePanel homePanel = new HomePanel(manager, cardLayout, mainPanel, viewPanel, headerPanel);
             LoginPanel loginPanel = new LoginPanel(manager, cardLayout, mainPanel);
             AddStudentPanel addPanel = new AddStudentPanel(manager, cardLayout, mainPanel);
