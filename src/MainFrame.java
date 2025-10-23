@@ -47,10 +47,10 @@ public class MainFrame {
             });
 
             ViewStudentsPanel viewPanel = new ViewStudentsPanel(manager);
-            HomePanel homePanel = new HomePanel(manager, cardLayout, mainPanel, viewPanel, headerPanel);
+            SearchUpdatePanel searchPanel = new SearchUpdatePanel(manager, cardLayout, mainPanel);
+            HomePanel homePanel = new HomePanel(manager, cardLayout, mainPanel, viewPanel, headerPanel,searchPanel);
             LoginPanel loginPanel = new LoginPanel(manager, cardLayout, mainPanel);
             AddStudentPanel addPanel = new AddStudentPanel(manager, cardLayout, mainPanel);
-            SearchUpdatePanel searchPanel = new SearchUpdatePanel(manager, cardLayout, mainPanel);
             DeletePanel deletePanel = new DeletePanel(manager, cardLayout, mainPanel);
             mainPanel.add(loginPanel, "Login");
             mainPanel.add(homePanel, "Home");

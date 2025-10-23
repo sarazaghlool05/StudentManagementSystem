@@ -8,8 +8,9 @@ public class HomePanel extends JPanel {
     private ViewStudentsPanel viewPanel;
     private JPanel headerPanel;
 
+
     public HomePanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel,
-                     ViewStudentsPanel viewPanel, JPanel headerPanel) {
+                     ViewStudentsPanel viewPanel, JPanel headerPanel,SearchUpdatePanel searchPanel) {
         this.manager = manager;
         this.cardLayout = cardLayout;
         this.mainPanel = mainPanel;
@@ -54,6 +55,7 @@ public class HomePanel extends JPanel {
         updateButton.addActionListener(e -> {
             headerPanel.setVisible(true);
             cardLayout.show(mainPanel, "Search or Update");
+            searchPanel.clearAll();
         });
 
         deleteButton.addActionListener(e -> {
