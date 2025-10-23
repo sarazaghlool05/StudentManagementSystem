@@ -5,8 +5,6 @@ import java.util.Comparator;
 
 public class StudentManager extends FileHandler {
     private ArrayList<Student> students;
-    private static final String USERNAME = "admin";
-    private static final String PASSWORD = "12345";
 
     public StudentManager() {
         students = new ArrayList<>();
