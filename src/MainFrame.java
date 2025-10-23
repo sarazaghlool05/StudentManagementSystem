@@ -13,20 +13,38 @@ public class MainFrame {
         SwingUtilities.invokeLater(()
                 -> {
             frame = new JFrame("Student Management System");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            frame.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    FileHandler.saveToFile(manager.getStudents());
+                    System.out.println("Data saved on exit.");
+                    frame.dispose();
+                    System.exit(0);
+                }
+            });
+
             frame.setSize(900, 600);
             frame.setLocationRelativeTo(null);
             cardLayout = new CardLayout();
             mainPanel = new JPanel(cardLayout);
          LoginPanel loginPanel = new LoginPanel(manager, cardLayout, mainPanel);
          ViewStudentsPanel viewPanel=new ViewStudentsPanel (mainPanel);
-         HomePanel homePanel = new HomePanel(manager, cardLayout, mainPanel, viewPanel);
+         HomePanel homePanel = new HomePanel(manager, cardLayout, mainPanel,viewPanel);
          AddStudentPanel addPanel= new AddStudentPanel(manager,cardLayout,mainPanel);
          SearchUpdatePanel searchPanel=new SearchUpdatePanel(manager,cardLayout,mainPanel);
-
-
-         DeletePanel deletePanel = new DeletePanel(manager, cardLayout, mainPanel);
-         mainPanel.add(loginPanel, "Login");
+            DeletePanel deletePanel = new DeletePanel(manager, cardLayout, mainPanel);
+            JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+            JButton backButton = new JButton("Back to Home");
+            headerPanel.add(backButton);
+            backButton.addActionListener(e -> cardLayout.show(mainPanel, "Home"));
+            frame.setLayout(new BorderLayout());
+            frame.add(headerPanel, BorderLayout.NORTH);
+            frame.add(mainPanel, BorderLayout.CENTER);
+            mainPanel.add(deletePanel, "Delete");
+            frame.setVisible(true);
+            cardLayout.show(mainPanel, "Login");
+        mainPanel.add(loginPanel, "Login");
          mainPanel.add(homePanel, "Home");
          mainPanel.add(addPanel,"Add");
          mainPanel.add(viewPanel,"View");

@@ -46,7 +46,6 @@ public class HomePanel extends JPanel {
         updateButton.addActionListener(e -> cardLayout.show(mainPanel, "Search or Update"));
         deleteButton.addActionListener(e -> cardLayout.show(mainPanel, "Delete"));
     }
-
     private JButton createStyledButton(String text) {
         JButton button = new JButton(text);
         button.setFont(new Font("Segoe UI", Font.BOLD, 16));

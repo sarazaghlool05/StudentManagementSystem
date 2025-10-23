@@ -10,7 +10,11 @@ public class StudentManager extends FileHandler {
         students = new ArrayList<>();
         students = loadFromFile();
     }
-@Override
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    @Override
     public boolean addStudent(Student s) {
         for (int i = 0; i < students.size(); i++) {
             Student exist = students.get(i);
