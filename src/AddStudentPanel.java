@@ -67,9 +67,11 @@ public class AddStudentPanel extends JPanel {
 
         if(success){
             JOptionPane.showMessageDialog(this, "Student added successfully!");     //this to display the message in this panel
+            clearFields();
         }
         else{
             JOptionPane.showMessageDialog(this, "Student with this ID already exists!");
+            clearFields();
         }
     }
 
