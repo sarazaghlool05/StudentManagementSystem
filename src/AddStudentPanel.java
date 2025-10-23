@@ -9,7 +9,7 @@ public class AddStudentPanel extends JPanel {
     //backend variables
     private StudentManager studentManager;
 
-    public AddStudentPanel(StudentManager studentManager){
+    public AddStudentPanel(StudentManager studentManager,CardLayout cardLayout,JPanel mainPanel){
         this.studentManager = studentManager;       //connecting to backend (like a constructor)
 
         // Use GridLayout: 7 rows (6 fields + buttons), 2 columns
