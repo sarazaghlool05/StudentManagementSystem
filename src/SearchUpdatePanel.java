@@ -125,7 +125,21 @@ public class SearchUpdatePanel extends JPanel {
 
         manager.updateStudent(new Student(id, name, age, gender, dept, gpa));
 
-        searchStudent(); //to refresh the table after updates
+        tableModel.setRowCount(0);
         JOptionPane.showMessageDialog(this, "Student updated successfully!");
+    }
+
+    public void clearAll() {
+        tableModel.setRowCount(0);
+
+        searchField.setText("");
+
+        nameField.setText("");
+        ageField.setText("");
+        deptField.setText("");
+        gpaField.setText("");
+        genderBox.setSelectedIndex(0);
+
+        selectedRow = -1;
     }
 }
