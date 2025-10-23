@@ -2,9 +2,14 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FileHandler <T> {
+public abstract class FileHandler implements StudentOps{
 
     protected static final String FILE_NAME = "students.txt";
+    public  abstract ArrayList<Student> viewStudentSortedById();
+    public abstract ArrayList<Student> searchStudent(String searchkey);
+    public abstract boolean addStudent(Student s);
+    public abstract boolean updateStudent(Student s);
+    public abstract boolean deleteStudent(Student s);
     public static void saveToFile(List<Student> students) {
         BufferedWriter writer = null;
         try {
