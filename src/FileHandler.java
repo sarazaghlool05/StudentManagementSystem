@@ -26,9 +26,6 @@ public abstract class FileHandler implements StudentOps{
                 writer.write(line);
                 writer.newLine();
             }
-
-            System.out.println("Students saved successfully.");
-
         } catch (IOException e) {
             System.err.println("Error saving students: " + e.getMessage());
         } finally {
@@ -61,9 +58,6 @@ public abstract class FileHandler implements StudentOps{
                     students.add(s);
                 }
             }
-
-            System.out.println("Students loaded successfully: " + students.size());
-
         }catch (FileNotFoundException e) {
             System.err.println("File not found. It will be created when you save.");
 
