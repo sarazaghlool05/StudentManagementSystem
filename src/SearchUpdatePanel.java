@@ -37,11 +37,17 @@ public class SearchUpdatePanel extends JPanel {
             JOptionPane.showMessageDialog(this,"No search matches!");
             return;
         }
-        Student s = new Student;
-        for (int i = 0; i < results.size(); i++) {
-            tableModel.addRow(new Object[]{
-                s.getStudentID(), s.getStudentName(), s.getStudentAge(), s.getGender(), s.getDepartment(), s.getGPA()
-            });
+        for(int i = 0; i < results.size(); i++) {
+            Student s = results.get(i);
+            Object[] row = {
+                    s.getStudentID(),
+                    s.getStudentName(),
+                    s.getStudentAge(),
+                    s.getGender(),
+                    s.getDepartment(),
+                    s.getGPA()
+            };
+            tableModel.addRow(row);
         }
     }
 
