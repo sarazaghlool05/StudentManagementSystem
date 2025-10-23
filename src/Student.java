@@ -16,59 +16,47 @@ public class Student {
     }
 
     public void setStudentID(String studentID){
-        if(studentID.isEmpty()){
-            System.out.println("student id can't be left empty!");
-            this.studentID = "unfound";
+        if(studentID.isEmpty() || studentID == null){
+            throw new IllegalArgumentException("Student ID can't be left empty!");
         }
-        else {
-            this.studentID = studentID;
-        }
+        this.studentID = studentID;
     }
 
     public void setStudentName(String studentName){
         if (studentName == null || studentName.trim().isEmpty()) {
-            System.out.println("Name cannot be empty!");
-            this.studentName = "";
+            throw new IllegalArgumentException("Name cannot be empty!");
         } else if (!studentName.matches("[a-zA-Z ]+")) {
-            System.out.println("Invalid name format! Letters and spaces only.");
-            this.studentName = "";
-        } else {
-            this.studentName = studentName.trim();
+            throw new IllegalArgumentException("Invalid name format! Letters and spaces only.");
         }
+        this.studentName = studentName.trim();
     }
 
     public void setStudentAge(int studentAge){
-        if(studentAge > 0){
-            this.studentAge = studentAge;
+        if(studentAge <= 0){
+            throw new IllegalArgumentException("Age must be positive!");
         }
-        else{
-            System.out.println("Age can't be negative!");
-            this.studentAge = 18;
-        }
+        this.studentAge = studentAge;
     }
 
     public void setGender(String gender){
-        if(gender.equalsIgnoreCase("male") || gender.equalsIgnoreCase("female")){
-            this.gender = gender;
+        if(!gender.equalsIgnoreCase("male") && !gender.equalsIgnoreCase("female")){
+            throw new IllegalArgumentException("Invalid gender! Choose Male or Female.");
         }
-        else{
-            System.out.println("invalid gender");
-            this.gender = "Unspecified";
-        }
+        this.gender = gender;
     }
 
     public void setDepartment(String department){
+        if (department == null || department.trim().isEmpty()) {
+            throw new IllegalArgumentException("Department cannot be empty!");
+        }
         this.department = department;
     }
 
     public void setGPA(float GPA){
-        if(GPA > 4 || GPA < 0){
-            System.out.println("invalid GPA!");
-            this.GPA = 0;
+        if (GPA < 0 || GPA > 4) {
+            throw new IllegalArgumentException("GPA must be between 0.0 and 4.0!");
         }
-        else{
-            this.GPA = GPA;
-        }
+        this.GPA = GPA;
     }
 
     public String getStudentID(){

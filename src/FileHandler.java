@@ -13,7 +13,7 @@ public abstract class FileHandler implements StudentOps{
     public static void saveToFile(List<Student> students) {
         BufferedWriter writer = null;
         try {
-            writer = new BufferedWriter(new FileWriter(FILE_NAME,true));
+            writer = new BufferedWriter(new FileWriter(FILE_NAME));
 
             for (int i = 0; i < students.size(); i++) {
                 Student s = students.get(i);
@@ -26,9 +26,6 @@ public abstract class FileHandler implements StudentOps{
                 writer.write(line);
                 writer.newLine();
             }
-
-            System.out.println("Students saved successfully.");
-
         } catch (IOException e) {
             System.err.println("Error saving students: " + e.getMessage());
         } finally {
@@ -61,11 +58,9 @@ public abstract class FileHandler implements StudentOps{
                     students.add(s);
                 }
             }
-
-            System.out.println("Students loaded successfully: " + students.size());
-
-        } catch (FileNotFoundException e) {
+        }catch (FileNotFoundException e) {
             System.err.println("File not found. It will be created when you save.");
+
         } catch (IOException e) {
             System.err.println("Error reading students: " + e.getMessage());
         }
