@@ -4,7 +4,9 @@ import java.util.Comparator;
 
 
 public class StudentManager extends FileHandler {
+
     public static ArrayList<Student> students;
+
 
 
 
@@ -77,4 +79,10 @@ public class StudentManager extends FileHandler {
         }
         return false;
     }
+
+    public void LogOut(){
+        saveToFile(students);
+        System.exit(0);
+    }
+
 }

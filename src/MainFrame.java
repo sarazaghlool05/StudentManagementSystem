@@ -1,5 +1,7 @@
 import javax.swing.*;
+
 import java.awt.*;
+
 
 public class MainFrame {
     private JFrame frame;

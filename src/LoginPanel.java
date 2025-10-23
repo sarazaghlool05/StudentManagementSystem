@@ -3,8 +3,10 @@ import java.awt.*;
 public class LoginPanel extends JPanel {
     private JTextField textField1;
     private JTextField textField2;
-public static final String USERNAME="admin";
-    public static final String PASSWORD="12345";
+
+    private static final String USERNAME = "admin";
+    private static final String PASSWORD = "12345";
+
 
     public LoginPanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel) {
         setLayout(new GridBagLayout());
@@ -13,7 +15,6 @@ public static final String USERNAME="admin";
         JLabel usernameLabel = new JLabel("Username:");
         c.gridx = 0;
         c.gridy = 0;
-        add(usernameLabel, c);
         add(usernameLabel, c);
         JTextField userField = new JTextField(15);
         c.gridx = 1;
@@ -32,7 +33,9 @@ public static final String USERNAME="admin";
         add(loginButton, c);
         loginButton.addActionListener(e -> {
             String username = userField.getText();
-            String password = passwordField.getText();
+
+            String password = new String(passwordField.getPassword());
+
             if (username.equals(USERNAME) && password.equals(PASSWORD)) {
                 JOptionPane.showMessageDialog(this, "Login successful!");
                 cardLayout.show(mainPanel, "Home");
@@ -42,6 +45,4 @@ public static final String USERNAME="admin";
         });
 
     }
-
-
 }

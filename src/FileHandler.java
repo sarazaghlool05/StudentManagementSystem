@@ -10,7 +10,7 @@ public abstract class FileHandler implements StudentOps{
     public abstract boolean addStudent(Student s);
     public abstract boolean updateStudent(Student s);
     public abstract boolean deleteStudent(String id);
-    public static void saveToFile(List<Student> students) {
+    public static void saveToFile(ArrayList<Student> students) {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(FILE_NAME));
