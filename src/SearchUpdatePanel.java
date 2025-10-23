@@ -50,7 +50,7 @@ public class SearchUpdatePanel extends JPanel {
         updatePanel.add(ageField);
 
         updatePanel.add(new JLabel("Gender:"));
-        genderBox = new JComboBox<>(new String[]{"Male", "Female"});
+        genderBox = new JComboBox<>(new String[]{"Select", "Male", "Female"});
         updatePanel.add(genderBox);
 
         updatePanel.add(new JLabel("Department:"));
@@ -120,6 +120,10 @@ public class SearchUpdatePanel extends JPanel {
         int age = Integer.parseInt(ageField.getText().trim());
 
         String gender = genderBox.getSelectedItem().toString();
+        if (gender.equals("Select")) {
+            JOptionPane.showMessageDialog(this, "Please select a valid gender!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String dept = deptField.getText().trim();
         float gpa = Float.parseFloat(gpaField.getText().trim());
 
