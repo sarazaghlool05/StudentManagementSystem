@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class TestSearchGUI {
+class TestSearchGUI {
     public static void main(String[] args) {
         // Make GUI look better (optional)
         try {
