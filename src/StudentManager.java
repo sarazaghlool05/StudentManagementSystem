@@ -1,18 +1,18 @@
-import java.util.ArrayList;
-import java.util.logging.FileHandler;
+import java.util.*;
+
 
 public class StudentManager extends FileHandler {
     private ArrayList<Student> students;
 
     public StudentManager() {
         students = new ArrayList<>();
-        students = loadFromFile;
+        students = loadFromFile();
     }
 
     public boolean addStudent(Student s) {
         for (int i = 0; i < students.size(); i++) {
             Student exist = students.get(i);
-            if (exist.getId().equals(s.getId())) {
+            if (exist.getStudentID().equals(s.getStudentID())) {
                 return false;
             }
         }
@@ -22,27 +22,28 @@ public class StudentManager extends FileHandler {
 
     }
 
-    public boolean deleteStudent(Student s) {
+    public boolean deleteStudent(String id) {
         for (int i = 0; i < students.size(); i++) {
             Student exist = students.get(i);
-            if (exist.getId().equals(s.getId())) {
-                return false;
+            if (exist.getStudentID().equals(id)) {
+                students.remove(i);
+                saveToFile(students);
+                return true;
             }
         }
-        students.remove(s);
-        saveToFile(students);
-        return true;
+        return false;
     }
 
-    public ArrayList<Student> searchStudent(String searchkey) {
+
+    public ArrayList<Student> searchStudent(String searchKey) {
         ArrayList<Student> results = new ArrayList<>();
-        String key = searchkey.toLowerCase();
+        String key = searchKey.toLowerCase();
 
         for (int i = 0; i < students.size(); i++) {
             Student s = students.get(i);
 
-            if (s.getId().toLowerCase().contains(key) ||
-                    s.getName().toLowerCase().contains(key)) {
+            if (s.getStudentID().toLowerCase().contains(key) ||
+                    s.getStudentName().toLowerCase().contains(key)) {
                 results.add(s);
             }
         }
@@ -54,7 +55,7 @@ public class StudentManager extends FileHandler {
         ArrayList<Student> sorted = new ArrayList<>(students);
         Collections.sort(sorted, new Comparator<Student>() {
             public int compare(Student s1, Student s2) {
-                return s1.getId().compareTo(s2.getId());
+                return s1.getStudentID().compareTo(s2.getStudentID());
             }
         });
         return sorted;
@@ -63,7 +64,7 @@ public class StudentManager extends FileHandler {
     public boolean updateStudent(Student s) {
         for (int i = 0; i < students.size(); i++) {
             Student current = students.get(i);
-            if(current.getId().equals(s.getId())){
+            if(current.getStudentID().equals(s.getStudentID())){
                 students.set(i,s);
                 saveToFile(students);
                 return true;
