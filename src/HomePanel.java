@@ -47,8 +47,8 @@ public class HomePanel extends JPanel {
 
         viewButton.addActionListener(e -> {
             headerPanel.setVisible(true);
-            viewPanel.loadStudents(manager);
             cardLayout.show(mainPanel, "View");
+            viewPanel.loadStudents(manager);
         });
 
         updateButton.addActionListener(e -> {
