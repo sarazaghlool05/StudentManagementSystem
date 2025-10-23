@@ -16,16 +16,24 @@ public class Student {
     }
 
     public void setStudentID(String studentID){
-        this.studentID = studentID;
+        if(studentID.isEmpty()){
+            System.out.println("student id can't be left empty!");
+            this.studentID = "unfound";
+        }
+        else {
+            this.studentID = studentID;
+        }
     }
 
     public void setStudentName(String studentName){
-        if(!studentName.matches("[a-zA-Z]+") || studentName.isEmpty()){
-            System.out.println("false name format!");
-            this.studentName = " ";
-        }
-        else{
-            this.studentName = studentName;
+        if (studentName == null || studentName.trim().isEmpty()) {
+            System.out.println("Name cannot be empty!");
+            this.studentName = "";
+        } else if (!studentName.matches("[a-zA-Z ]+")) {
+            System.out.println("Invalid name format! Letters and spaces only.");
+            this.studentName = "";
+        } else {
+            this.studentName = studentName.trim();
         }
     }
 
@@ -35,7 +43,7 @@ public class Student {
         }
         else{
             System.out.println("Age can't be negative!");
-            this.studentAge = 0;
+            this.studentAge = 18;
         }
     }
 
@@ -45,7 +53,7 @@ public class Student {
         }
         else{
             System.out.println("invalid gender");
-            this.gender = "female";
+            this.gender = "Unspecified";
         }
     }
 
@@ -85,5 +93,12 @@ public class Student {
 
     public float getGPA(){
         return GPA;
+    }
+
+    @Override
+    public String toString() {
+        return "Student ID: " + studentID + ", Name: " + studentName +
+                ", Age: " + studentAge + ", Gender: " + gender +
+                ", Department: " + department + ", GPA: " + GPA;
     }
 }
