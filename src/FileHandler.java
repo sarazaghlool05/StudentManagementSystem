@@ -39,8 +39,8 @@ public abstract class FileHandler implements StudentOps{
             }
         }
     }
-    public static List<Student> loadFromFile() {
-        List<Student> students = new ArrayList<>();
+    public static ArrayList<Student> loadFromFile() {
+        ArrayList<Student> students = new ArrayList<>();
         BufferedReader reader = null;
 
         try {
