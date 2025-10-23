@@ -53,25 +53,29 @@ public class AddStudentPanel extends JPanel {
 
     private void addStudent(){
         //reading input from user.
-        String name = nameField.getText();
-        String id = idField.getText();
-        String department = departmentField.getText();
-        String gender = (String) genderBox.getSelectedItem();
-        int age = Integer.parseInt(ageField.getText());
-        float gpa = Float.parseFloat(GPAField.getText());
+        try {
+            String name = nameField.getText();
+            String id = idField.getText();
+            String department = departmentField.getText();
+            String gender = (String) genderBox.getSelectedItem();
+            int age = Integer.parseInt(ageField.getText());
+            float gpa = Float.parseFloat(GPAField.getText());
 
-        //making a new student object
-        Student s = new Student(id, name,age, gender, department, gpa);
-        //now we need to tell the backend to add to the array and file
-        boolean success = studentManager.addStudent(s);
+            //making a new student object
+            Student s = new Student(id, name, age, gender, department, gpa);
+            //now we need to tell the backend to add to the array and file
+            boolean success = studentManager.addStudent(s);
 
-        if(success){
-            JOptionPane.showMessageDialog(this, "Student added successfully!");     //this to display the message in this panel
-            clearFields();
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Student with this ID already exists!");
-            clearFields();
+            if (success) {
+                JOptionPane.showMessageDialog(this, "Student added successfully!");     //this to display the message in this panel
+                clearFields();
+            } else {
+                JOptionPane.showMessageDialog(this, "Student with this ID already exists!");
+                clearFields();
+            }
+        }catch(IllegalArgumentException ex) {
+            //catching all validation errors from the Student setters
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Invalid Input", JOptionPane.ERROR_MESSAGE);
         }
     }
 
