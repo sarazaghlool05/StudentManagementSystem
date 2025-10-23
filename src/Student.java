@@ -6,6 +6,15 @@ public class Student {
     private String department;
     private float GPA;
 
+    public Student(String studentID, String studentName, int studentAge, String gender, String department, float GPA){
+        setStudentID(studentID);
+        setStudentName(studentName);
+        setStudentAge(studentAge);
+        setDepartment(department);
+        setGender(gender);
+        setGPA(GPA);
+    }
+
     public void setStudentID(String studentID){
         this.studentID = studentID;
     }
@@ -52,5 +61,29 @@ public class Student {
         else{
             this.GPA = GPA;
         }
+    }
+
+    public String getStudentID(){
+        return studentID;
+    }
+
+    public String getStudentName(){
+        return studentName;
+    }
+
+    public String getGender(){
+        return gender;
+    }
+
+    public String getDepartment(){
+        return department;
+    }
+
+    public int getStudentAge(){
+        return studentAge;
+    }
+
+    public float getGPA(){
+        return GPA;
     }
 }
