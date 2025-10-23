@@ -58,6 +58,32 @@ public class MainFrame {
         });
     }
 
+    public static JButton createStyledButton(String text, Color bg, Color hoverBg, Color textColor) {
+        JButton button = new JButton(text);
+        button.setBackground(bg);
+        button.setForeground(textColor);
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        button.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+        // Rounded corners
+        button.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255, 161), 2, true));
+        button.setPreferredSize(new Dimension(70,30));
+        // Hover effect
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(hoverBg);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(bg);
+            }
+        });
+
+        return button;
+    }
+
+
     public static void main(String[] args) {
         new MainFrame();
     }
