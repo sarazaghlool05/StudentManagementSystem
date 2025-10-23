@@ -17,21 +17,21 @@ public class MainFrame {
             frame.setLocationRelativeTo(null);
             cardLayout = new CardLayout();
             mainPanel = new JPanel(cardLayout);
-        /* LoginPanel loginPanel = new LoginPanel(manager, cardLayout, mainPanel);
+         LoginPanel loginPanel = new LoginPanel(manager, cardLayout, mainPanel);
          HomePanel homePanel = new HomePanel(manager, cardLayout, mainPanel);
          AddPanel addPanel= new AddPanel(manager,cardLayout,mainPanel);
          ViewPanel viewPanel=new ViewPanel (manager,cardLayout,mainPanel);
          Searchpanel searchPanel=new SearchPanel(manager,cardLayout,mainPanel);
-         */
+
 
             DeletePanel deletePanel = new DeletePanel(manager, cardLayout, mainPanel);
-        /* mainPanel.add(loginPanel, "Login");
+        mainPanel.add(loginPanel, "Login");
          mainPanel.add(homePanel, "Home");
          mainPanel.add(addPanel,"Add");
          mainPanel.add(viewPanel,"View");
          mainPanel.add(searchPanel,"Search or Update");
 
-         */
+
             mainPanel.add(deletePanel, "Delete");
             frame.add(mainPanel);
             frame.setVisible(true);
