@@ -22,6 +22,7 @@ public class ViewStudentsPanel extends JPanel {
         studentTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(studentTable);
         add(scrollPane, BorderLayout.CENTER);
+
     }
 
     public void loadStudents() {

@@ -12,7 +12,17 @@ public class MainFrame {
         SwingUtilities.invokeLater(()
                 -> {
             frame = new JFrame("Student Management System");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            frame.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    FileHandler.saveToFile(manager.getStudents());
+                    System.out.println("Data saved on exit.");
+                    frame.dispose();
+                    System.exit(0);
+                }
+            });
+
             frame.setSize(900, 600);
             frame.setLocationRelativeTo(null);
             cardLayout = new CardLayout();
