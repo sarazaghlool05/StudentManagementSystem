@@ -5,8 +5,10 @@ import java.net.CookieHandler;
 public class LoginPanel extends JPanel {
     private JTextField textField1;
     private JTextField textField2;
+
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "12345";
+
 
     public LoginPanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel) {
         setLayout(new GridBagLayout());
@@ -39,7 +41,9 @@ public class LoginPanel extends JPanel {
         add(loginButton, c);
         loginButton.addActionListener(e -> {
             String username = userField.getText();
+
             String password = new String(passwordField.getPassword());
+
             if (username.equals(USERNAME) && password.equals(PASSWORD)) {
                 JOptionPane.showMessageDialog(this, "Login successful!");
                 cardLayout.show(mainPanel, "Home");
