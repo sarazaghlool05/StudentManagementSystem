@@ -18,7 +18,8 @@ public class SearchUpdatePanel extends JPanel {
     //update
 
 
-    public SearchUpdatePanel(StudentManager manager){
+    public SearchUpdatePanel(StudentManager manager,CardLayout cardLayout,JPanel mainPanel){
+
         this.manager = manager;
         setLayout(new BorderLayout());
 
