@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class StudentManager extends FileHandler {
@@ -8,7 +10,7 @@ public class StudentManager extends FileHandler {
         students = new ArrayList<>();
         students = loadFromFile();
     }
-
+@Override
     public boolean addStudent(Student s) {
         for (int i = 0; i < students.size(); i++) {
             Student exist = students.get(i);
@@ -17,24 +19,22 @@ public class StudentManager extends FileHandler {
             }
         }
         students.add(s);
-        saveToFile(students);
         return true;
 
     }
-
+@Override
     public boolean deleteStudent(String id) {
         for (int i = 0; i < students.size(); i++) {
             Student exist = students.get(i);
             if (exist.getStudentID().equals(id)) {
                 students.remove(i);
-                saveToFile(students);
                 return true;
             }
         }
         return false;
     }
 
-
+@Override
     public ArrayList<Student> searchStudent(String searchKey) {
         ArrayList<Student> results = new ArrayList<>();
         String key = searchKey.toLowerCase();
@@ -50,8 +50,8 @@ public class StudentManager extends FileHandler {
         return results;
     }
 
-
-    public ArrayList<Student> viewStudentsSortedById() {
+@Override
+    public ArrayList<Student> viewStudentSortedById() {
         ArrayList<Student> sorted = new ArrayList<>(students);
         Collections.sort(sorted, new Comparator<Student>() {
             public int compare(Student s1, Student s2) {
@@ -60,13 +60,12 @@ public class StudentManager extends FileHandler {
         });
         return sorted;
     }
-
+@Override
     public boolean updateStudent(Student s) {
         for (int i = 0; i < students.size(); i++) {
             Student current = students.get(i);
             if(current.getStudentID().equals(s.getStudentID())){
                 students.set(i,s);
-                saveToFile(students);
                 return true;
             }
         }
