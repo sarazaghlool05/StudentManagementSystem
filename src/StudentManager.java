@@ -4,13 +4,17 @@ import java.util.Comparator;
 
 
 public class StudentManager extends FileHandler {
-    private ArrayList<Student> students;
+
+    public static ArrayList<Student> students;
 
     public StudentManager() {
-        students = new ArrayList<>();
-        students = loadFromFile();
+        students = FileHandler.loadFromFile();
     }
-@Override
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    @Override
     public boolean addStudent(Student s) {
         for (int i = 0; i < students.size(); i++) {
             Student exist = students.get(i);
@@ -71,4 +75,10 @@ public class StudentManager extends FileHandler {
         }
         return false;
     }
+
+    public void LogOut(){
+        saveToFile(students);
+        System.exit(0);
+    }
+
 }
