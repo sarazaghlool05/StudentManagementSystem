@@ -28,13 +28,21 @@ public class MainFrame {
             cardLayout = new CardLayout();
             mainPanel = new JPanel(cardLayout);
          LoginPanel loginPanel = new LoginPanel(manager, cardLayout, mainPanel);
-         HomePanel homePanel = new HomePanel(manager, cardLayout, mainPanel);
-         AddPanel addPanel= new AddPanel(manager,cardLayout,mainPanel);
-         ViewPanel viewPanel=new ViewPanel (manager,cardLayout,mainPanel);
-         Searchpanel searchPanel=new SearchPanel(manager,cardLayout,mainPanel);
-
-
+         ViewStudentsPanel viewPanel=new ViewStudentsPanel (mainPanel);
+         HomePanel homePanel = new HomePanel(manager, cardLayout, mainPanel,viewPanel);
+         AddStudentPanel addPanel= new AddStudentPanel(manager,cardLayout,mainPanel);
+         SearchUpdatePanel searchPanel=new SearchUpdatePanel(manager,cardLayout,mainPanel);
             DeletePanel deletePanel = new DeletePanel(manager, cardLayout, mainPanel);
+            JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+            JButton backButton = new JButton("Back to Home");
+            headerPanel.add(backButton);
+            backButton.addActionListener(e -> cardLayout.show(mainPanel, "Home"));
+            frame.setLayout(new BorderLayout());
+            frame.add(headerPanel, BorderLayout.NORTH);
+            frame.add(mainPanel, BorderLayout.CENTER);
+            mainPanel.add(deletePanel, "Delete");
+            frame.setVisible(true);
+            cardLayout.show(mainPanel, "Login");
         mainPanel.add(loginPanel, "Login");
          mainPanel.add(homePanel, "Home");
          mainPanel.add(addPanel,"Add");
