@@ -6,53 +6,100 @@ public class AddStudentPanel extends JPanel {
     private JTextField nameField, ageField, idField, departmentField, GPAField;
     private JButton addButton, clearButton;
     private JComboBox<String> genderBox;
-    //backend variables
     private StudentManager studentManager;
 
-    public AddStudentPanel(StudentManager studentManager,CardLayout cardLayout,JPanel mainPanel){
-        this.studentManager = studentManager;       //connecting to backend (like a constructor)
+    public AddStudentPanel(StudentManager studentManager, CardLayout cardLayout, JPanel mainPanel) {
+        this.studentManager = studentManager;
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(10, 15, 10, 15);
+        c.anchor = GridBagConstraints.WEST;
+        setBackground(new Color(245, 247, 250)); // light gray background
+        setBorder(BorderFactory.createEmptyBorder(30, 40, 30, 40));
 
-        // Use GridLayout: 7 rows (6 fields + buttons), 2 columns
-        setLayout(new GridLayout(7, 2, 10, 10));
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // padding around edges
+        // Initialize components
+        nameLabel = new JLabel("Full Name:");
+        ageLabel = new JLabel("Age:");
+        idLabel = new JLabel("ID:");
+        genderLabel = new JLabel("Gender:");
+        departmentLabel = new JLabel("Department:");
+        GPALabel = new JLabel("GPA:");
 
-        nameLabel = new JLabel("Full name: ");
-        nameField = new JTextField(15); //15 is how wide the box is
+        Font labelFont = new Font("Segoe UI", Font.BOLD, 18);
+        nameLabel.setFont(labelFont);
+        ageLabel.setFont(labelFont);
+        idLabel.setFont(labelFont);
+        genderLabel.setFont(labelFont);
+        departmentLabel.setFont(labelFont);
+        GPALabel.setFont(labelFont);
 
-        ageLabel = new JLabel("Age: ");
-        ageField = new JTextField(5);
-
-        idLabel = new JLabel("ID: ");
-        idField = new JTextField(5);
-
-        departmentLabel = new JLabel("Department: ");
-        departmentField = new JTextField(15);
-
-        GPALabel = new JLabel("GPA: ");
-        GPAField = new JTextField(5);
-
-        genderLabel = new JLabel("Gender: ");
+        nameField = new JTextField(20);
+        ageField = new JTextField(20);
+        idField = new JTextField(20);
+        departmentField = new JTextField(20);
+        GPAField = new JTextField(20);
         genderBox = new JComboBox<>(new String[]{"Select", "Male", "Female"});
-
-        addButton = new JButton("Add");
+        genderBox.setPreferredSize(new Dimension(200, 35));
         clearButton = new JButton("Clear");
+        addButton = new JButton("Add");
 
-        // Add everything to the panel
-        add(nameLabel); add(nameField);
-        add(ageLabel); add(ageField);
-        add(idLabel); add(idField);
-        add(genderLabel); add(genderBox);
-        add(departmentLabel); add(departmentField);
-        add(GPALabel); add(GPAField);
-        add(addButton); add(clearButton);
+        // Now add them in order
+        c.gridx = 0;
+        c.gridy = 0;
+        add(nameLabel, c);
+        c.gridx = 1;
+        add(nameField, c);
 
-        //buttons functionality
-        addButton.addActionListener(e -> addStudent());     //e is an object of action listener class.
+        c.gridx = 0;
+        c.gridy = 1;
+        add(ageLabel, c);
+        c.gridx = 1;
+        add(ageField, c);
+
+        Dimension fieldSize = new Dimension(200, 35);
+        nameField.setPreferredSize(fieldSize);
+        ageField.setPreferredSize(fieldSize);
+        idField.setPreferredSize(fieldSize);
+        departmentField.setPreferredSize(fieldSize);
+        GPAField.setPreferredSize(fieldSize);
+
+        c.gridx = 0;
+        c.gridy = 2;
+        add(idLabel, c);
+        c.gridx = 1;
+        add(idField, c);
+
+        c.gridx = 0;
+        c.gridy = 3;
+        add(genderLabel, c);
+        c.gridx = 1;
+        add(genderBox, c);
+
+        c.gridx = 0;
+        c.gridy = 4;
+        add(departmentLabel, c);
+        c.gridx = 1;
+        add(departmentField, c);
+
+        c.gridx = 0;
+        c.gridy = 5;
+        add(GPALabel, c);
+        c.gridx = 1;
+        add(GPAField, c);
+
+        // Buttons at the bottom
+        c.gridx = 0;
+        c.gridy = 6;
+        add(clearButton, c);
+        c.gridx = 1;
+        add(addButton, c);
+
+        // Button functionality
+        addButton.addActionListener(e -> addStudent());
         clearButton.addActionListener(e -> clearFields());
     }
 
-    private void addStudent(){
-        //reading input from user.
+    private void addStudent() {
         try {
             String name = nameField.getText();
             String id = idField.getText();
@@ -61,23 +108,23 @@ public class AddStudentPanel extends JPanel {
             int age = Integer.parseInt(ageField.getText());
             float gpa = Float.parseFloat(GPAField.getText());
 
-            //making a new student object
             Student s = new Student(id, name, age, gender, department, gpa);
-            //now we need to tell the backend to add to the array and file
-            boolean success = studentManager.addStudent(s);
 
+            boolean success = studentManager.addStudent(s);
             if (success) {
-                JOptionPane.showMessageDialog(this, "Student added successfully!");     //this to display the message in this panel
+                JOptionPane.showMessageDialog(this, "Student added successfully!");
                 clearFields();
             } else {
-                JOptionPane.showMessageDialog(this, "Student with this ID already exists!");
-                clearFields();
+                JOptionPane.showMessageDialog(this, "Student with this ID already exists!", "Duplicate ID", JOptionPane.WARNING_MESSAGE);
             }
-        }catch(IllegalArgumentException ex) {
-            //catching all validation errors from the Student setters
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Invalid Input", JOptionPane.ERROR_MESSAGE);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Please enter valid numeric values for Age and GPA.", "Invalid Number", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, "<html>" + ex.getMessage().replace("\n", "<br>") + "</html>", "Invalid Input", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
     //for the clear button
     private void clearFields() {

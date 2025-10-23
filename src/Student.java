@@ -6,14 +6,50 @@ public class Student {
     private String department;
     private float GPA;
 
-    public Student(String studentID, String studentName, int studentAge, String gender, String department, float GPA){
-        setStudentID(studentID);
-        setStudentName(studentName);
-        setStudentAge(studentAge);
-        setDepartment(department);
-        setGender(gender);
-        setGPA(GPA);
+    public Student(String studentID, String studentName, int studentAge, String gender, String department, float GPA) {
+        StringBuilder errors = new StringBuilder();
+
+        try {
+            setStudentID(studentID);
+        } catch (IllegalArgumentException e) {
+            errors.append("• ").append(e.getMessage()).append("\n");
+        }
+
+        try {
+            setStudentName(studentName);
+        } catch (IllegalArgumentException e) {
+            errors.append("• ").append(e.getMessage()).append("\n");
+        }
+
+        try {
+            setStudentAge(studentAge);
+        } catch (IllegalArgumentException e) {
+            errors.append("• ").append(e.getMessage()).append("\n");
+        }
+
+        try {
+            setGender(gender);
+        } catch (IllegalArgumentException e) {
+            errors.append("• ").append(e.getMessage()).append("\n");
+        }
+
+        try {
+            setDepartment(department);
+        } catch (IllegalArgumentException e) {
+            errors.append("• ").append(e.getMessage()).append("\n");
+        }
+
+        try {
+            setGPA(GPA);
+        } catch (IllegalArgumentException e) {
+            errors.append("• ").append(e.getMessage()).append("\n");
+        }
+
+        if (errors.length() > 0) {
+            throw new IllegalArgumentException(errors.toString());
+        }
     }
+
 
     public void setStudentID(String studentID){
         if(studentID.isEmpty() || studentID == null){

@@ -21,7 +21,7 @@ public class LoginPanel extends JPanel {
         c.gridy = 0;
         add(usernameLabel, c);
         JTextField userField = new JTextField(15);
-        userField.setPreferredSize(new Dimension(200, 40));
+        userField.setPreferredSize(new Dimension(135, 20));
         c.gridx = 1;
         add(userField, c);
         JLabel passwordLabel = new JLabel("Password:");
@@ -31,10 +31,11 @@ public class LoginPanel extends JPanel {
         c.gridy = 1;
         add(passwordLabel, c);
         JPasswordField passwordField = new JPasswordField(15);
-        passwordField.setPreferredSize(new Dimension(200,40));
+        passwordField.setPreferredSize(new Dimension(135, 20));
         c.gridx = 1;
         add(passwordField, c);
         JButton loginButton = MainFrame.createStyledButton("Login",new Color(63, 235, 251, 61),new Color(63, 235, 251),Color.WHITE);
+        loginButton.setPreferredSize(new Dimension(135,30));
         c.gridx = 0;
         c.gridy = 2;
         c.gridwidth = 2;
