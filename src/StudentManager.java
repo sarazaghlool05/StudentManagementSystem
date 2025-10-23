@@ -5,6 +5,8 @@ import java.util.Comparator;
 
 public class StudentManager extends FileHandler {
     private ArrayList<Student> students;
+    private static final String USER = "admin";
+    private static final String PASSWORD = "12345";
 
     public StudentManager() {
         students = new ArrayList<>();
@@ -71,4 +73,10 @@ public class StudentManager extends FileHandler {
         }
         return false;
     }
+
+    public void LogOut(){
+        saveToFile(students);
+        System.exit(0);
+    }
+
 }
