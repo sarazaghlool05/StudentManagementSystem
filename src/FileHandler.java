@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class FileHandler <T> {
 
@@ -11,11 +12,11 @@ public abstract class FileHandler <T> {
 
             for (int i = 0; i < students.size(); i++) {
                 Student s = students.get(i);
-                String line = s.getstudentID() + "," +
-                        s.getstudentName() + "," +
-                        s.getstudentAge() + "," +
-                        s.getgender() + "," +
-                        s.getdepartment() + "," +
+                String line = s.getStudentID() + "," +
+                        s.getStudentName() + "," +
+                        s.getStudentAge() + "," +
+                        s.getGender() + "," +
+                        s.getDepartment() + "," +
                         s.getGPA();
                 writer.write(line);
                 writer.newLine();
@@ -33,11 +34,6 @@ public abstract class FileHandler <T> {
             }
         }
     }
-    public static list<Student> loadFromFile(){
-        list<Student> students=new ArrayList<>();
-
-
-    }
     public static List<Student> loadFromFile() {
         List<Student> students = new ArrayList<>();
         BufferedReader reader = null;
@@ -49,12 +45,12 @@ public abstract class FileHandler <T> {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 6) {
-                    int id = Integer.parseInt(parts[0]);
+                    String id =parts[0];
                     String name = parts[1];
                     int age = Integer.parseInt(parts[2]);
                     String gender = parts[3];
                     String dept = parts[4];
-                    double gpa = Double.parseDouble(parts[5]);
+                    float gpa = Float.parseFloat(parts[5]);
 
                     Student s = new Student(id, name, age, gender, dept, gpa);
                     students.add(s);
