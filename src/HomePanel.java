@@ -2,18 +2,22 @@ import javax.swing.*;
 import java.awt.*;
 
 public class HomePanel extends JPanel {
-
     private StudentManager manager;
     private CardLayout cardLayout;
     private JPanel mainPanel;
+    private ViewStudentsPanel viewPanel;
+    private JPanel headerPanel;
 
-    public HomePanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel,ViewStudentsPanel viewPanel) {
+    public HomePanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel,
+                     ViewStudentsPanel viewPanel, JPanel headerPanel) {
         this.manager = manager;
         this.cardLayout = cardLayout;
         this.mainPanel = mainPanel;
+        this.viewPanel = viewPanel;
+        this.headerPanel = headerPanel;
 
         setLayout(new BorderLayout());
-        setBackground(new Color(245, 247, 250)); // soft background
+        setBackground(new Color(245, 247, 250));
 
         JLabel welcomeLabel = new JLabel("Welcome to the Student Management System", JLabel.CENTER);
         welcomeLabel.setFont(new Font("Segoe UI", Font.BOLD, 22));
@@ -36,16 +40,28 @@ public class HomePanel extends JPanel {
         buttonPanel.add(deleteButton);
 
         add(buttonPanel, BorderLayout.CENTER);
-
-        addButton.addActionListener(e -> cardLayout.show(mainPanel, "Add"));
-        viewButton.addActionListener(e -> {
-            cardLayout.show(mainPanel, "View");
-            viewPanel.loadStudents(); // 🟢 load when View button is pressed
+        addButton.addActionListener(e -> {
+            headerPanel.setVisible(true);
+            cardLayout.show(mainPanel, "Add");
         });
 
-        updateButton.addActionListener(e -> cardLayout.show(mainPanel, "Search or Update"));
-        deleteButton.addActionListener(e -> cardLayout.show(mainPanel, "Delete"));
+        viewButton.addActionListener(e -> {
+            headerPanel.setVisible(true);
+            viewPanel.loadStudents(manager); // live data
+            cardLayout.show(mainPanel, "View");
+        });
+
+        updateButton.addActionListener(e -> {
+            headerPanel.setVisible(true);
+            cardLayout.show(mainPanel, "Search or Update");
+        });
+
+        deleteButton.addActionListener(e -> {
+            headerPanel.setVisible(true);
+            cardLayout.show(mainPanel, "Delete");
+        });
     }
+
     private JButton createStyledButton(String text) {
         JButton button = new JButton(text);
         button.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -59,6 +75,7 @@ public class HomePanel extends JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button.setBackground(new Color(100, 149, 237));
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setBackground(new Color(70, 130, 180));
             }

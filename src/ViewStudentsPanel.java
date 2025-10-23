@@ -25,7 +25,7 @@ public class ViewStudentsPanel extends JPanel {
 
     }
 
-    public void loadStudents() {
+    public void loadStudents(StudentManager manager) {
         students = FileHandler.loadFromFile();
         updateTable(students);
 

@@ -33,6 +33,7 @@ public class LoginPanel extends JPanel {
             String password = passwordField.getText();
             if (username.equals("admin") && password.equals("1234")) {
                 JOptionPane.showMessageDialog(this, "Login successful!");
+                cardLayout.show(mainPanel, "Home");
             } else {
                 JOptionPane.showMessageDialog(this, "Wrong username or password!");
             }
