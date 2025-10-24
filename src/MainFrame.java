@@ -72,7 +72,6 @@ public class MainFrame {
         button.setFocusPainted(false);
         button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         button.setFont(new Font("Segoe UI", Font.BOLD, 14));
-
         // Rounded corners
         button.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255, 161), 2, true));
         button.setPreferredSize(new Dimension(70,30));
@@ -90,6 +89,21 @@ public class MainFrame {
         return button;
     }
 
+    public static void drawGradientBackground(Graphics g, JComponent c) {
+        Graphics2D g2d = (Graphics2D) g.create();
+        try {
+            int width = c.getWidth();
+            int height = c.getHeight();
+
+            Color color1 = new Color(63, 235, 251, 173);   // soft blue
+            Color color2 = new Color(228, 118, 135, 255);  // soft pink
+            GradientPaint gp = new GradientPaint(0, 0, color1, width, height, color2);
+            g2d.setPaint(gp);
+            g2d.fillRect(0, 0, width, height);
+        } finally {
+            g2d.dispose();
+        }
+    }
 
     public static void main(String[] args) {
         new MainFrame();

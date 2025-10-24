@@ -67,7 +67,7 @@ public class HomePanel extends JPanel {
     private JButton createStyledButton(String text) {
         JButton button = new JButton(text);
         button.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        button.setBackground(new Color(70, 130, 180));
+        button.setBackground(new Color(28, 59, 78));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
@@ -75,14 +75,20 @@ public class HomePanel extends JPanel {
 
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                button.setBackground(new Color(100, 149, 237));
+                button.setBackground(new Color(43, 89, 117));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                button.setBackground(new Color(70, 130, 180));
+                button.setBackground(new Color(28, 59, 78));
             }
         });
 
         return button;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        MainFrame.drawGradientBackground(g, this);
     }
 }
