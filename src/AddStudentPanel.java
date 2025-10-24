@@ -135,4 +135,10 @@ public class AddStudentPanel extends JPanel {
         GPAField.setText("");
         genderBox.setSelectedIndex(0); // reset combo box to "Select"
     }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        MainFrame.drawGradientBackground(g, this);
+    }
 }

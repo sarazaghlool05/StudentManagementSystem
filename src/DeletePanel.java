@@ -44,4 +44,10 @@ public class DeletePanel extends JPanel {
             }
         });
     }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        MainFrame.drawGradientBackground(g, this);
+    }
 }
