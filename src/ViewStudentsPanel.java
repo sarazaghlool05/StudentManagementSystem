@@ -43,4 +43,5 @@ public class ViewStudentsPanel extends JPanel {
             tableModel.addRow(row);
         }
     }
+
 }
