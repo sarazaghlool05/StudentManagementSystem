@@ -33,6 +33,14 @@ public class AddStudentPanel extends JPanel {
         departmentLabel.setFont(labelFont);
         GPALabel.setFont(labelFont);
 
+        Color labelColor = Color.WHITE;
+        nameLabel.setForeground(labelColor);
+        ageLabel.setForeground(labelColor);
+        idLabel.setForeground(labelColor);
+        genderLabel.setForeground(labelColor);
+        departmentLabel.setForeground(labelColor);
+        GPALabel.setForeground(labelColor);
+
         nameField = new JTextField(20);
         ageField = new JTextField(20);
         idField = new JTextField(20);
@@ -40,8 +48,8 @@ public class AddStudentPanel extends JPanel {
         GPAField = new JTextField(20);
         genderBox = new JComboBox<>(new String[]{"Select", "Male", "Female"});
         genderBox.setPreferredSize(new Dimension(200, 35));
-        clearButton = new JButton("Clear");
-        addButton = new JButton("Add");
+        clearButton = MainFrame.createStyledButton("Clear",new Color(63, 235, 251, 61),new Color(63, 235, 251),Color.WHITE);
+        addButton = MainFrame.createStyledButton("Add",new Color(63, 235, 251, 61),new Color(63, 235, 251),Color.WHITE);
 
         // Now add them in order
         c.gridx = 0;

@@ -16,7 +16,7 @@ public class LoginPanel extends JPanel {
         c.insets = new Insets(5, 5, 5, 5);
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setForeground(Color.WHITE);
-        usernameLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        usernameLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         c.gridx = 0;
         c.gridy = 0;
         add(usernameLabel, c);
@@ -26,7 +26,7 @@ public class LoginPanel extends JPanel {
         add(userField, c);
         JLabel passwordLabel = new JLabel("Password:");
         passwordLabel.setForeground(Color.WHITE);
-        passwordLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        passwordLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         c.gridx = 0;
         c.gridy = 1;
         add(passwordLabel, c);

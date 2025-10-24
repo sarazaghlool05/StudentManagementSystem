@@ -12,13 +12,16 @@ public class DeletePanel extends JPanel {
         c.gridx = 0;
         c.gridy = 0;
         JLabel idLabel = new JLabel("Enter Student ID to delete:");
+        Color labelColor = Color.WHITE;
+        idLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
+        idLabel.setForeground(labelColor);
         c.gridx = 0;
         c.gridy = 0;
         add(idLabel, c);
         JTextField idField = new JTextField(15);
         c.gridx = 1;
         add(idField, c);
-        JButton deleteButton = new JButton("Delete");
+        JButton deleteButton = MainFrame.createStyledButton("Delete",new Color(63, 235, 251, 61),new Color(63, 235, 251),Color.WHITE);
         c.gridx = 0;
         c.gridy = 1;
         c.gridwidth = 2;

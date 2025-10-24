@@ -108,30 +108,51 @@ public class SearchUpdatePanel extends JPanel {
         }
     }
 
-    private void updateStudent(){
-        if (selectedRow < 0){
+    private void updateStudent() {
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(this, "Please select a student to update!");
             return;
         }
 
-        String id = tableModel.getValueAt(selectedRow, 0).toString();
+        try {
+            String id = tableModel.getValueAt(selectedRow, 0).toString();
+            String name = nameField.getText().trim();
+            String department = deptField.getText().trim();
+            String gender = (String) genderBox.getSelectedItem();
 
-        String name = nameField.getText().trim();
-        int age = Integer.parseInt(ageField.getText().trim());
+            if (gender.equals("Select")) {
+                JOptionPane.showMessageDialog(this, "Please select a valid gender!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        String gender = genderBox.getSelectedItem().toString();
-        if (gender.equals("Select")) {
-            JOptionPane.showMessageDialog(this, "Please select a valid gender!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-            return;
+            if (name.isEmpty() || department.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Name and Department fields cannot be empty.", "Missing Data", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            int age = Integer.parseInt(ageField.getText().trim());
+            float gpa = Float.parseFloat(gpaField.getText().trim());
+
+            Student updatedStudent = new Student(id, name, age, gender, department, gpa);
+
+            boolean success = manager.updateStudent(updatedStudent);
+            if (success) {
+                JOptionPane.showMessageDialog(this, "Student updated successfully!");
+                tableModel.setRowCount(0);
+                clearAll(); // optional if you have a method like this
+            } else {
+                JOptionPane.showMessageDialog(this, "Student not found or update failed!", "Update Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Please enter valid numeric values for Age and GPA.", "Invalid Number", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, "<html>" + ex.getMessage().replace("\n", "<br>") + "</html>", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "An unexpected error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        String dept = deptField.getText().trim();
-        float gpa = Float.parseFloat(gpaField.getText().trim());
-
-        manager.updateStudent(new Student(id, name, age, gender, dept, gpa));
-
-        tableModel.setRowCount(0);
-        JOptionPane.showMessageDialog(this, "Student updated successfully!");
     }
+
     public void clearAll() {
         tableModel.setRowCount(0);
 
