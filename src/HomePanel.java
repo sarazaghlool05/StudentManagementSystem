@@ -30,10 +30,10 @@ public class HomePanel extends JPanel {
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(50, 100, 100, 100));
         buttonPanel.setBackground(new Color(245, 247, 250));
 
-        JButton addButton = createStyledButton("Add Student");
-        JButton viewButton = createStyledButton("View Students");
-        JButton updateButton = createStyledButton("Search / Update");
-        JButton deleteButton = createStyledButton("Delete Student");
+        JButton addButton = MainFrame.createStyledButton("Add student",new Color(38, 127, 135),new Color(0, 164, 174),Color.WHITE);
+        JButton viewButton = MainFrame.createStyledButton("View all students",new Color(38, 127, 135),new Color(0, 164, 174),Color.WHITE);
+        JButton updateButton = MainFrame.createStyledButton("Update student/Search for a student",new Color(38, 127, 135),new Color(0, 164, 174),Color.WHITE);
+        JButton deleteButton = MainFrame.createStyledButton("Delete student",new Color(38, 127, 135),new Color(0, 164, 174),Color.WHITE);
 
         buttonPanel.add(addButton);
         buttonPanel.add(viewButton);
@@ -64,27 +64,6 @@ public class HomePanel extends JPanel {
         });
     }
 
-    private JButton createStyledButton(String text) {
-        JButton button = new JButton(text);
-        button.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        button.setBackground(new Color(28, 59, 78));
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
-        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-        button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                button.setBackground(new Color(43, 89, 117));
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                button.setBackground(new Color(28, 59, 78));
-            }
-        });
-
-        return button;
-    }
 
     @Override
     protected void paintComponent(Graphics g) {
