@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AddStudentPanel extends JPanel {
+
     private JLabel nameLabel, ageLabel, genderLabel, idLabel, departmentLabel, GPALabel;
     private JTextField nameField, ageField, idField, departmentField, GPAField;
     private JButton addButton, clearButton;
@@ -10,14 +11,33 @@ public class AddStudentPanel extends JPanel {
 
     public AddStudentPanel(StudentManager studentManager, CardLayout cardLayout, JPanel mainPanel) {
         this.studentManager = studentManager;
+
+        // Panel setup
         setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(10, 15, 10, 15);
-        c.anchor = GridBagConstraints.WEST;
         setBackground(new Color(245, 247, 250)); // light gray background
         setBorder(BorderFactory.createEmptyBorder(30, 40, 30, 40));
 
-        // Initialize components
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(10, 15, 10, 15);
+        c.anchor = GridBagConstraints.WEST;
+
+        initializeLabels();
+        initializeFields();
+        initializeButtons();
+
+        Dimension fieldSize = new Dimension(200, 35);
+        setFieldSizes(fieldSize);
+
+        // Add components to panel
+        addComponentsToPanel(c);
+
+        // Button functionality
+        addButton.addActionListener(e -> addStudent());
+        clearButton.addActionListener(e -> clearFields());
+    }
+
+
+    private void initializeLabels() {
         nameLabel = new JLabel("Full Name:");
         ageLabel = new JLabel("Age:");
         idLabel = new JLabel("ID:");
@@ -26,85 +46,84 @@ public class AddStudentPanel extends JPanel {
         GPALabel = new JLabel("GPA:");
 
         Font labelFont = new Font("Segoe UI", Font.BOLD, 18);
-        nameLabel.setFont(labelFont);
-        ageLabel.setFont(labelFont);
-        idLabel.setFont(labelFont);
-        genderLabel.setFont(labelFont);
-        departmentLabel.setFont(labelFont);
-        GPALabel.setFont(labelFont);
-
         Color labelColor = Color.WHITE;
-        nameLabel.setForeground(labelColor);
-        ageLabel.setForeground(labelColor);
-        idLabel.setForeground(labelColor);
-        genderLabel.setForeground(labelColor);
-        departmentLabel.setForeground(labelColor);
-        GPALabel.setForeground(labelColor);
 
+        JLabel[] labels = { nameLabel, ageLabel, idLabel, genderLabel, departmentLabel, GPALabel };
+        for (JLabel label : labels) {
+            label.setFont(labelFont);
+            label.setForeground(labelColor);
+        }
+    }
+
+    private void initializeFields() {
         nameField = new JTextField(20);
         ageField = new JTextField(20);
         idField = new JTextField(20);
         departmentField = new JTextField(20);
         GPAField = new JTextField(20);
+
         genderBox = new JComboBox<>(new String[]{"Select", "Male", "Female"});
         genderBox.setPreferredSize(new Dimension(200, 35));
-        clearButton = MainFrame.createStyledButton("Clear",new Color(63, 235, 251, 61),new Color(63, 235, 251),Color.WHITE);
-        addButton = MainFrame.createStyledButton("Add",new Color(63, 235, 251, 61),new Color(63, 235, 251),Color.WHITE);
+    }
 
-        // Now add them in order
-        c.gridx = 0;
-        c.gridy = 0;
+    private void initializeButtons() {
+        Color base = new Color(63, 235, 251, 61);
+        Color hover = new Color(63, 235, 251);
+        Color text = Color.WHITE;
+
+        clearButton = MainFrame.createStyledButton("Clear", base, hover, text);
+        addButton = MainFrame.createStyledButton("Add", base, hover, text);
+    }
+
+    private void setFieldSizes(Dimension size) {
+        JTextField[] fields = { nameField, ageField, idField, departmentField, GPAField };
+        for (JTextField field : fields) {
+            field.setPreferredSize(size);
+        }
+    }
+
+    private void addComponentsToPanel(GridBagConstraints c) {
+        // Row 0: Name
+        c.gridx = 0; c.gridy = 0;
         add(nameLabel, c);
         c.gridx = 1;
         add(nameField, c);
 
-        c.gridx = 0;
-        c.gridy = 1;
+        // Row 1: Age
+        c.gridx = 0; c.gridy = 1;
         add(ageLabel, c);
         c.gridx = 1;
         add(ageField, c);
 
-        Dimension fieldSize = new Dimension(200, 35);
-        nameField.setPreferredSize(fieldSize);
-        ageField.setPreferredSize(fieldSize);
-        idField.setPreferredSize(fieldSize);
-        departmentField.setPreferredSize(fieldSize);
-        GPAField.setPreferredSize(fieldSize);
-
-        c.gridx = 0;
-        c.gridy = 2;
+        // Row 2: ID
+        c.gridx = 0; c.gridy = 2;
         add(idLabel, c);
         c.gridx = 1;
         add(idField, c);
 
-        c.gridx = 0;
-        c.gridy = 3;
+        // Row 3: Gender
+        c.gridx = 0; c.gridy = 3;
         add(genderLabel, c);
         c.gridx = 1;
         add(genderBox, c);
 
-        c.gridx = 0;
-        c.gridy = 4;
+        // Row 4: Department
+        c.gridx = 0; c.gridy = 4;
         add(departmentLabel, c);
         c.gridx = 1;
         add(departmentField, c);
 
-        c.gridx = 0;
-        c.gridy = 5;
+        // Row 5: GPA
+        c.gridx = 0; c.gridy = 5;
         add(GPALabel, c);
         c.gridx = 1;
         add(GPAField, c);
 
-        // Buttons at the bottom
-        c.gridx = 0;
-        c.gridy = 6;
+        // Row 6: Buttons
+        c.gridx = 0; c.gridy = 6;
         add(clearButton, c);
         c.gridx = 1;
         add(addButton, c);
-
-        // Button functionality
-        addButton.addActionListener(e -> addStudent());
-        clearButton.addActionListener(e -> clearFields());
     }
 
     private void addStudent() {
@@ -117,24 +136,27 @@ public class AddStudentPanel extends JPanel {
             float gpa = Float.parseFloat(GPAField.getText());
 
             Student s = new Student(id, name, age, gender, department, gpa);
-
             boolean success = studentManager.addStudent(s);
+
             if (success) {
                 JOptionPane.showMessageDialog(this, "Student added successfully!");
                 clearFields();
             } else {
-                JOptionPane.showMessageDialog(this, "Student with this ID already exists!", "Duplicate ID", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Student with this ID already exists!",
+                        "Duplicate ID", JOptionPane.WARNING_MESSAGE);
             }
 
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Please enter valid numeric values for Age and GPA.", "Invalid Number", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "Please enter valid numeric values for Age and GPA.",
+                    "Invalid Number", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(this, "<html>" + ex.getMessage().replace("\n", "<br>") + "</html>", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "<html>" + ex.getMessage().replace("\n", "<br>") + "</html>",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-
-    //for the clear button
     private void clearFields() {
         nameField.setText("");
         ageField.setText("");
