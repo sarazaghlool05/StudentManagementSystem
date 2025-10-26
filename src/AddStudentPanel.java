@@ -149,11 +149,7 @@ public class AddStudentPanel extends JPanel {
             if (success) {
                 JOptionPane.showMessageDialog(this, "Student added successfully!\nGenerated ID: " + newId);
                 clearFields();
-            } else {
-                JOptionPane.showMessageDialog(this, "Student with this ID already exists!",
-                        "Duplicate ID", JOptionPane.WARNING_MESSAGE);
             }
-
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this,
                     "Please enter valid numeric values for Age and GPA.",
