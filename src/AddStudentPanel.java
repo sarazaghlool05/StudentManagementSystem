@@ -4,9 +4,10 @@ import java.awt.*;
 public class AddStudentPanel extends JPanel {
 
     private JLabel nameLabel, ageLabel, genderLabel, idLabel, departmentLabel, GPALabel;
-    private JTextField nameField, ageField, idField, departmentField, GPAField;
+    private JTextField nameField, ageField, idField,GPAField;
     private JButton addButton, clearButton;
     private JComboBox<String> genderBox;
+    private JComboBox<String> departmentBox;
     private StudentManager studentManager;
 
     public AddStudentPanel(StudentManager studentManager, CardLayout cardLayout, JPanel mainPanel) {
@@ -40,7 +41,7 @@ public class AddStudentPanel extends JPanel {
     private void initializeLabels() {
         nameLabel = new JLabel("Full Name:");
         ageLabel = new JLabel("Age:");
-        idLabel = new JLabel("ID:");
+        idLabel = new JLabel("Generated ID:");
         genderLabel = new JLabel("Gender:");
         departmentLabel = new JLabel("Department:");
         GPALabel = new JLabel("GPA:");
@@ -48,7 +49,7 @@ public class AddStudentPanel extends JPanel {
         Font labelFont = new Font("Segoe UI", Font.BOLD, 18);
         Color labelColor = Color.WHITE;
 
-        JLabel[] labels = { nameLabel, ageLabel, idLabel, genderLabel, departmentLabel, GPALabel };
+        JLabel[] labels = { nameLabel, ageLabel,idLabel,genderLabel, departmentLabel, GPALabel };
         for (JLabel label : labels) {
             label.setFont(labelFont);
             label.setForeground(labelColor);
@@ -59,8 +60,22 @@ public class AddStudentPanel extends JPanel {
         nameField = new JTextField(20);
         ageField = new JTextField(20);
         idField = new JTextField(20);
-        departmentField = new JTextField(20);
+        idField.setEditable(false);
         GPAField = new JTextField(20);
+        String[] departments = {
+                "Computer and Communication",
+                "Biomedical",
+                "Mechatronics and Robotics",
+                "Electromechanical",
+                "Gas and Petrochemical",
+                "General program",
+                "Architectural and Constructural",
+                "Civil Environmental"
+        };
+
+        departmentBox = new JComboBox<>(departments);
+        departmentBox.setPreferredSize(new Dimension(200, 35));
+
 
         genderBox = new JComboBox<>(new String[]{"Select", "Male", "Female"});
         genderBox.setPreferredSize(new Dimension(200, 35));
@@ -76,7 +91,7 @@ public class AddStudentPanel extends JPanel {
     }
 
     private void setFieldSizes(Dimension size) {
-        JTextField[] fields = { nameField, ageField, idField, departmentField, GPAField };
+        JTextField[] fields = { nameField, ageField,idField, GPAField };
         for (JTextField field : fields) {
             field.setPreferredSize(size);
         }
@@ -95,11 +110,12 @@ public class AddStudentPanel extends JPanel {
         c.gridx = 1;
         add(ageField, c);
 
-        // Row 2: ID
+       //Row 2:ID
         c.gridx = 0; c.gridy = 2;
         add(idLabel, c);
         c.gridx = 1;
         add(idField, c);
+
 
         // Row 3: Gender
         c.gridx = 0; c.gridy = 3;
@@ -111,7 +127,8 @@ public class AddStudentPanel extends JPanel {
         c.gridx = 0; c.gridy = 4;
         add(departmentLabel, c);
         c.gridx = 1;
-        add(departmentField, c);
+        add(departmentBox, c);
+
 
         // Row 5: GPA
         c.gridx = 0; c.gridy = 5;
@@ -128,14 +145,16 @@ public class AddStudentPanel extends JPanel {
 
     private void addStudent() {
         try {
+            String newId = studentManager.generateNextID();
+            idField.setText(newId);
             String name = nameField.getText();
             String id = idField.getText();
-            String department = departmentField.getText();
+            String department = (String) departmentBox.getSelectedItem();
             String gender = (String) genderBox.getSelectedItem();
             int age = Integer.parseInt(ageField.getText());
             float gpa = Float.parseFloat(GPAField.getText());
 
-            Student s = new Student(id, name, age, gender, department, gpa);
+            Student s = new Student(newId, name, age, gender, department, gpa);
             boolean success = studentManager.addStudent(s);
 
             if (success) {
@@ -161,7 +180,7 @@ public class AddStudentPanel extends JPanel {
         nameField.setText("");
         ageField.setText("");
         idField.setText("");
-        departmentField.setText("");
+        departmentBox.setSelectedIndex(0);
         GPAField.setText("");
         genderBox.setSelectedIndex(0); // reset combo box to "Select"
     }

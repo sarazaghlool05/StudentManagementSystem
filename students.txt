@@ -3,3 +3,4 @@
 9310,beso,20,female,CCE,3.6
 9311,sara,21,female,CCE,4.0
 9366,sara,21,Female,CCE,3.5
+9367,asaad,19,Male,Computer and Communication,2.0
