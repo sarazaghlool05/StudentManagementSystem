@@ -82,8 +82,8 @@ public class Student {
     }
 
     public void setDepartment(String department){
-        if (department == null || department.trim().isEmpty()) {
-            throw new IllegalArgumentException("Department cannot be empty!");
+        if (department == null || department.equals("Select")) {
+            throw new IllegalArgumentException("Please select a valid Department!");
         }
         this.department = department;
     }

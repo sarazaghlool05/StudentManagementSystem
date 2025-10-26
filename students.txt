@@ -1,0 +1,3 @@
+9367,asaad,19,Male,Computer and Communication,2.0
+9368,ziad,21,Male,Computer and Communication,3.87
+9369,walid,21,Male,Computer and Communication,4.0

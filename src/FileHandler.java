@@ -2,15 +2,34 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FileHandler implements StudentOps{
+public abstract class FileHandler implements StudentOps {
 
     protected static final String FILE_NAME = "students.txt";
-    public  abstract ArrayList<Student> viewStudentSortedById();
+
+    public abstract ArrayList<Student> viewStudentSortedById();
+
     public abstract ArrayList<Student> searchStudent(String searchkey);
+
     public abstract boolean addStudent(Student s);
+
     public abstract boolean updateStudent(Student s);
+
     public abstract boolean deleteStudent(String id);
+
     public static void saveToFile(ArrayList<Student> students) {
+        for (int i = 0; i < students.size() - 1; i++) {
+            for (int j = 0; j < students.size() - i - 1; j++) {
+
+                int id1 = Integer.parseInt(students.get(j).getStudentID());
+                int id2 = Integer.parseInt(students.get(j + 1).getStudentID());
+                if (id1 > id2) {
+                    Student temp = students.get(j);
+                    students.set(j, students.get(j + 1));
+                    students.set(j + 1, temp); //bubble sorting the file
+                }
+            }
+        }
+
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(FILE_NAME));
@@ -36,7 +55,9 @@ public abstract class FileHandler implements StudentOps{
             }
         }
     }
+
     public static ArrayList<Student> loadFromFile() {
+
         ArrayList<Student> students = new ArrayList<>();
         BufferedReader reader = null;
 
@@ -47,7 +68,7 @@ public abstract class FileHandler implements StudentOps{
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 6) {
-                    String id =parts[0];
+                    String id = parts[0];
                     String name = parts[1];
                     int age = Integer.parseInt(parts[2]);
                     String gender = parts[3];
@@ -58,12 +79,26 @@ public abstract class FileHandler implements StudentOps{
                     students.add(s);
                 }
             }
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.err.println("File not found. It will be created when you save.");
 
         } catch (IOException e) {
             System.err.println("Error reading students: " + e.getMessage());
         }
+        for (int i = 0; i < students.size() - 1; i++) {
+            for (int j = 0; j < students.size() - i - 1; j++) {
+
+                int id1 = Integer.parseInt(students.get(j).getStudentID());
+                int id2 = Integer.parseInt(students.get(j + 1).getStudentID());
+
+                if (id1 > id2) {
+                    Student temp = students.get(j);
+                    students.set(j, students.get(j + 1));
+                    students.set(j + 1, temp);
+                }
+            }
+        }
         return students;
+
     }
 }

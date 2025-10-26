@@ -80,5 +80,15 @@ public class StudentManager extends FileHandler {
         saveToFile(students);
         System.exit(0);
     }
+    public String generateNextID() {
+        ArrayList<Student> list = loadFromFile();
+        if (list.isEmpty()) {
+            return "1";
+        }
+        Student last = list.get(list.size() - 1);
+        int lastId = Integer.parseInt(last.getStudentID());
+        return String.valueOf(lastId + 1);
+    }
+
 
 }
