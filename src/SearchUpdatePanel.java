@@ -56,6 +56,7 @@ public class SearchUpdatePanel extends JPanel {
         tableModel = new DefaultTableModel(columns, 0);
         studentTable = new JTable(tableModel);
         studentTable.setDefaultEditor(Object.class, null);
+        studentTable.setRowHeight(28);
     }
 
     private JPanel createUpdatePanel() {
