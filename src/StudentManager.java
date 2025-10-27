@@ -81,14 +81,22 @@ public class StudentManager extends FileHandler {
         System.exit(0);
     }
     public String generateNextID() {
-        ArrayList<Student> list = loadFromFile();
-        if (list.isEmpty()) {
+        if (students.isEmpty()) {
             return "1";
         }
-        Student last = list.get(list.size() - 1);
-        int lastId = Integer.parseInt(last.getStudentID());
-        return String.valueOf(lastId + 1);
+
+        int maxId = 0;
+        for (Student s : students) {
+            try {
+                int id = Integer.parseInt(s.getStudentID());
+                if (id > maxId) {
+                    maxId = id;
+                }
+            } catch (NumberFormatException ignore) {}
+        }
+        return String.valueOf(maxId + 1);
     }
+
 
 
 }
