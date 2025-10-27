@@ -67,7 +67,6 @@ public class DeletePanel extends JPanel {
         studentTable.setAutoCreateRowSorter(true);
     }
 
-    // ✅ This is the key — same logic as the old text-based delete
     private void handleDeleteAction() {
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(this, "Please select a student to delete.");
