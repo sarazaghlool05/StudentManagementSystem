@@ -17,10 +17,12 @@ public class DeletePanel extends JPanel {
         this.manager = manager;
 
         setLayout(new BorderLayout());
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Title
         JLabel title = new JLabel("Delete Student");
         title.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        title.setForeground(Color.WHITE);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         add(title, BorderLayout.NORTH);
 
@@ -29,7 +31,7 @@ public class DeletePanel extends JPanel {
         add(new JScrollPane(studentTable), BorderLayout.CENTER);
 
         // Delete button
-        deleteButton = new JButton("delete");
+        deleteButton = MainFrame.createStyledButton("Delete Selected Student", new Color(63, 235, 251, 61), new Color(63, 235, 251), Color.WHITE);
         deleteButton.setPreferredSize(new Dimension(220, 35));
 
         JPanel buttonPanel = new JPanel();
@@ -118,6 +120,12 @@ public class DeletePanel extends JPanel {
             };
             tableModel.addRow(row);
         }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        MainFrame.drawGradientBackground(g, this);
     }
 }
 

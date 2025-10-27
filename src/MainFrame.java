@@ -48,7 +48,7 @@ public class MainFrame {
 
     private void setupHeaderPanel() {
         headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        backButton = new JButton("Back to Home");
+        backButton = MainFrame.createStyledButton("Back", new Color(34, 122, 131, 255), new Color(63, 235, 251), Color.WHITE);
         headerPanel.add(backButton);
         headerPanel.setVisible(false);
 

@@ -13,6 +13,7 @@ public class ViewStudentsPanel extends JPanel {
         this.manager = manager;
 
         setLayout(new BorderLayout());
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         initializeTable();
         add(new JScrollPane(studentTable), BorderLayout.CENTER);
     }
@@ -46,5 +47,11 @@ public class ViewStudentsPanel extends JPanel {
             };
             tableModel.addRow(row);
         }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        MainFrame.drawGradientBackground(g, this);
     }
 }

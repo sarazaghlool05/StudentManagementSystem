@@ -19,6 +19,7 @@ public class SearchUpdatePanel extends JPanel {
         this.manager = manager;
 
         setLayout(new BorderLayout());
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Top search panel
         JPanel searchPanel = createSearchPanel();
@@ -43,7 +44,7 @@ public class SearchUpdatePanel extends JPanel {
         panel.add(new JLabel("Search by ID or Name: "));
 
         searchField = new JTextField(15);
-        searchButton = new JButton("Search");
+        searchButton = MainFrame.createStyledButton("Search", new Color(63, 235, 251, 61), new Color(63, 235, 251), Color.WHITE);
 
         panel.add(searchField);
         panel.add(searchButton);
@@ -69,7 +70,7 @@ public class SearchUpdatePanel extends JPanel {
         deptField = new JTextField();
         gpaField = new JTextField();
         genderBox = new JComboBox<>(new String[]{"Select", "Male", "Female"});
-        updateButton = new JButton("Update");
+        updateButton = MainFrame.createStyledButton("Update", new Color(63, 235, 251, 61), new Color(63, 235, 251), Color.WHITE);
 
         // Layout
         updatePanel.add(new JLabel("Name:"));
@@ -185,5 +186,11 @@ public class SearchUpdatePanel extends JPanel {
         gpaField.setText("");
         genderBox.setSelectedIndex(0);
         selectedRow = -1;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        MainFrame.drawGradientBackground(g, this);
     }
 }
