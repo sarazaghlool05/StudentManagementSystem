@@ -15,7 +15,7 @@ public class SearchUpdatePanel extends JPanel {
     private int selectedRow = -1;
     private StudentManager manager;
 
-    public SearchUpdatePanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel) {
+    public SearchUpdatePanel(StudentManager manager) {
         this.manager = manager;
 
         setLayout(new BorderLayout());
@@ -44,7 +44,7 @@ public class SearchUpdatePanel extends JPanel {
         panel.add(new JLabel("Search by ID or Name: "));
 
         searchField = new JTextField(15);
-        searchButton = MainFrame.createStyledButton("Search", new Color(63, 235, 251, 61), new Color(63, 235, 251), Color.WHITE);
+        searchButton = MainFrame.createStyledButton("Search", new Color(34, 122, 131, 255), new Color(63, 235, 251), Color.WHITE);
 
         panel.add(searchField);
         panel.add(searchButton);
@@ -70,7 +70,7 @@ public class SearchUpdatePanel extends JPanel {
         deptField = new JTextField();
         gpaField = new JTextField();
         genderBox = new JComboBox<>(new String[]{"Select", "Male", "Female"});
-        updateButton = MainFrame.createStyledButton("Update", new Color(63, 235, 251, 61), new Color(63, 235, 251), Color.WHITE);
+        updateButton = MainFrame.createStyledButton("Update", new Color(34, 122, 131, 255), new Color(63, 235, 251), Color.WHITE);
 
         // Layout
         updatePanel.add(new JLabel("Name:"));

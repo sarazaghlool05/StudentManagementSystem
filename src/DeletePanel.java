@@ -13,7 +13,7 @@ public class DeletePanel extends JPanel {
     private JButton deleteButton;
     private int selectedRow = -1;
 
-    public DeletePanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel) {
+    public DeletePanel(StudentManager manager) {
         this.manager = manager;
 
         setLayout(new BorderLayout());
@@ -31,7 +31,7 @@ public class DeletePanel extends JPanel {
         add(new JScrollPane(studentTable), BorderLayout.CENTER);
 
         // Delete button
-        deleteButton = MainFrame.createStyledButton("Delete Selected Student", new Color(63, 235, 251, 61), new Color(63, 235, 251), Color.WHITE);
+        deleteButton = MainFrame.createStyledButton("Delete Selected Student", new Color(34, 122, 131, 255), new Color(63, 235, 251), Color.WHITE);
         deleteButton.setPreferredSize(new Dimension(220, 35));
 
         JPanel buttonPanel = new JPanel();

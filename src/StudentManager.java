@@ -10,6 +10,7 @@ public class StudentManager extends FileHandler {
     public StudentManager() {
         students = FileHandler.loadFromFile();
     }
+
     public ArrayList<Student> getStudents() {
         return students;
     }

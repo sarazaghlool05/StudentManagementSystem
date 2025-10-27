@@ -7,4 +7,3 @@
 9374,amr,23,Male,Electromechanical,2.0
 9375,ali,25,Male,Gas and Petrochemical,2.0
 9376,sara,21,Female,Computer and Communication,4.0
-9377,shams,24,Female,Civil Environmental,3.0

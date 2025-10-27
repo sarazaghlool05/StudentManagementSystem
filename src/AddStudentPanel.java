@@ -10,17 +10,16 @@ public class AddStudentPanel extends JPanel {
     private JComboBox<String> departmentBox;
     private StudentManager studentManager;
 
-    public AddStudentPanel(StudentManager studentManager, CardLayout cardLayout, JPanel mainPanel) {
+    public AddStudentPanel(StudentManager studentManager) {
         this.studentManager = studentManager;
 
         // Panel setup
         setLayout(new GridBagLayout());
-        setBackground(new Color(245, 247, 250)); // light gray background
         setBorder(BorderFactory.createEmptyBorder(30, 40, 30, 40));
 
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(10, 15, 10, 15);
-        c.anchor = GridBagConstraints.WEST;
+        c.insets = new Insets(10, 15, 10, 15);      //the space around the element
+        c.anchor = GridBagConstraints.WEST;     //aligns the elements to the left
 
         initializeLabels();
         initializeFields();
@@ -45,13 +44,13 @@ public class AddStudentPanel extends JPanel {
         departmentLabel = new JLabel("Department:");
         GPALabel = new JLabel("GPA:");
 
-        Font labelFont = new Font("Segoe UI", Font.BOLD, 18);
+        Font labelFont = new Font("Segoe UI", Font.BOLD, 20);
         Color labelColor = Color.WHITE;
 
         JLabel[] labels = { nameLabel, ageLabel,genderLabel, departmentLabel, GPALabel };
-        for (JLabel label : labels) {
-            label.setFont(labelFont);
-            label.setForeground(labelColor);
+        for (int i = 0; i < labels.length; i ++) {
+            labels[i].setFont(labelFont);
+            labels[i].setForeground(labelColor);
         }
     }
 
@@ -80,7 +79,7 @@ public class AddStudentPanel extends JPanel {
     }
 
     private void initializeButtons() {
-        Color base = new Color(63, 235, 251, 61);
+        Color base = new Color(34, 122, 131, 255);
         Color hover = new Color(63, 235, 251);
         Color text = Color.WHITE;
 
@@ -90,8 +89,8 @@ public class AddStudentPanel extends JPanel {
 
     private void setFieldSizes(Dimension size) {
         JTextField[] fields = { nameField, ageField, GPAField };
-        for (JTextField field : fields) {
-            field.setPreferredSize(size);
+        for (int i = 0; i < fields.length; i++) {
+            fields[i].setPreferredSize(size);
         }
     }
 

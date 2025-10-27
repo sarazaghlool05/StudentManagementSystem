@@ -7,7 +7,7 @@ public class LoginPanel extends JPanel {
 
     private JLabel messageLabel;
 
-    public LoginPanel(StudentManager manager, CardLayout cardLayout, JPanel mainPanel) {
+    public LoginPanel(CardLayout cardLayout, JPanel mainPanel) {
 
         setLayout(new GridBagLayout());
         setBackground(new Color(245, 247, 250));
@@ -55,7 +55,7 @@ public class LoginPanel extends JPanel {
     private JButton createLoginButton() {
         return MainFrame.createStyledButton(
                 "Login",
-                new Color(63, 235, 251, 61),
+                new Color(34, 122, 131, 255),
                 new Color(63, 235, 251),
                 Color.WHITE
         );
