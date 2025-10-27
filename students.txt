@@ -1,3 +1,2 @@
 9368,ziad,21,Male,Computer and Communication,3.87
 9369,walid,21,Male,Computer and Communication,4.0
-9371,sara,21,Female,Computer and Communication,4.0
