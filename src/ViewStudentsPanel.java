@@ -25,6 +25,7 @@ public class ViewStudentsPanel extends JPanel {
         studentTable.setAutoCreateRowSorter(true);
         studentTable.setDefaultEditor(Object.class, null); // make table read-only
         studentTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        studentTable.setRowHeight(28);
     }
 
     public void loadStudents(StudentManager manager) {
