@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame {        /*in here we used composition where the mainframe class contains the JFrame that
-                                    runs the program so if this class is deleted all the program collapses */
+public class MainFrame {
 
     private JFrame frame;
     private CardLayout cardLayout;
@@ -15,10 +14,10 @@ public class MainFrame {        /*in here we used composition where the mainfram
         manager = new StudentManager();
 
         SwingUtilities.invokeLater(() -> {
-            initializeFrame();      //initialize the main window
-            setupLayout();          //sets the layout
-            setupHeaderPanel();     //sets the header
-            setupPanels();          //creates all the panels
+            initializeFrame();
+            setupLayout();
+            setupHeaderPanel();
+            setupPanels();
             frame.setVisible(true);
         });
     }
@@ -27,8 +26,8 @@ public class MainFrame {        /*in here we used composition where the mainfram
         frame = new JFrame("Student Management System");
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setSize(900, 600);
-        frame.setLocationRelativeTo(null);      //to open in the middle of the screen
-        frame.setLayout(new BorderLayout());        //this divides the window into 5 parts north, south, east, west and center.
+        frame.setLocationRelativeTo(null);
+        frame.setLayout(new BorderLayout());
 
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -42,26 +41,26 @@ public class MainFrame {        /*in here we used composition where the mainfram
     }
 
     private void setupLayout() {
-        cardLayout = new CardLayout();      //a method that makes switching between the panels possible
-        mainPanel = new JPanel(cardLayout);     //we add the new card to the main panel
-        frame.add(mainPanel, BorderLayout.CENTER);      //then make sure the mainPanel is in the center of the window
+        cardLayout = new CardLayout();
+        mainPanel = new JPanel(cardLayout);
+        frame.add(mainPanel, BorderLayout.CENTER);
     }
 
     private void setupHeaderPanel() {
-        headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));      //what is flow layout?
+        headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         backButton = new JButton("Back to Home");
         headerPanel.add(backButton);
-        headerPanel.setVisible(false);      //we start it as false because we don't need it in the login panel or home panel
+        headerPanel.setVisible(false);
 
         backButton.addActionListener(e -> {
             cardLayout.show(mainPanel, "Home");
             headerPanel.setVisible(false);
         });
 
-        frame.add(headerPanel, BorderLayout.NORTH);     //we add the header at the top of the window
+        frame.add(headerPanel, BorderLayout.NORTH);
     }
 
-    private void setupPanels() {        //here we creat all the panels
+    private void setupPanels() {
         ViewStudentsPanel viewPanel = new ViewStudentsPanel(manager);
         SearchUpdatePanel searchPanel = new SearchUpdatePanel(manager, cardLayout, mainPanel);
         HomePanel homePanel = new HomePanel(manager, cardLayout, mainPanel, viewPanel, headerPanel, searchPanel);
@@ -69,7 +68,6 @@ public class MainFrame {        /*in here we used composition where the mainfram
         AddStudentPanel addPanel = new AddStudentPanel(manager, cardLayout, mainPanel);
         DeletePanel deletePanel = new DeletePanel(manager, cardLayout, mainPanel);
 
-        //we add all of them to the main panel
         mainPanel.add(loginPanel, "Login");
         mainPanel.add(homePanel, "Home");
         mainPanel.add(addPanel, "Add");
@@ -77,7 +75,6 @@ public class MainFrame {        /*in here we used composition where the mainfram
         mainPanel.add(searchPanel, "Search or Update");
         mainPanel.add(deletePanel, "Delete");
 
-        //which panel we want to show on opening
         cardLayout.show(mainPanel, "Login");
     }
 
@@ -122,7 +119,6 @@ public class MainFrame {        /*in here we used composition where the mainfram
     }
 
     public static void main(String[] args) {
-        new MainFrame();        //this creates the window
+        new MainFrame();
     }
 }
-

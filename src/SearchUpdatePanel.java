@@ -19,7 +19,6 @@ public class SearchUpdatePanel extends JPanel {
         this.manager = manager;
 
         setLayout(new BorderLayout());
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Top search panel
         JPanel searchPanel = createSearchPanel();
@@ -57,9 +56,6 @@ public class SearchUpdatePanel extends JPanel {
         tableModel = new DefaultTableModel(columns, 0);
         studentTable = new JTable(tableModel);
         studentTable.setDefaultEditor(Object.class, null);
-        studentTable.setRowHeight(28);
-        studentTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
-        studentTable.setFont(new Font("Segoe UI", Font.PLAIN, 13));
     }
 
     private JPanel createUpdatePanel() {
@@ -188,11 +184,5 @@ public class SearchUpdatePanel extends JPanel {
         gpaField.setText("");
         genderBox.setSelectedIndex(0);
         selectedRow = -1;
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        MainFrame.drawGradientBackground(g, this);
     }
 }

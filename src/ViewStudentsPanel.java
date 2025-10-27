@@ -13,7 +13,6 @@ public class ViewStudentsPanel extends JPanel {
         this.manager = manager;
 
         setLayout(new BorderLayout());
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         initializeTable();
         add(new JScrollPane(studentTable), BorderLayout.CENTER);
     }
@@ -26,9 +25,6 @@ public class ViewStudentsPanel extends JPanel {
         studentTable.setAutoCreateRowSorter(true);
         studentTable.setDefaultEditor(Object.class, null); // make table read-only
         studentTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        studentTable.setRowHeight(28);
-        studentTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
-        studentTable.setFont(new Font("Segoe UI", Font.PLAIN, 13));
     }
 
     public void loadStudents(StudentManager manager) {
@@ -49,11 +45,5 @@ public class ViewStudentsPanel extends JPanel {
             };
             tableModel.addRow(row);
         }
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        MainFrame.drawGradientBackground(g, this);
     }
 }
