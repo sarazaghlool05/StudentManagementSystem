@@ -1,3 +1,7 @@
 9367,asaad,19,Male,Computer and Communication,2.0
 9368,ziad,21,Male,Computer and Communication,3.87
 9369,walid,21,Male,Computer and Communication,4.0
+9370,jolie,22,Female,Computer and Communication,4.0
+9371,marc,21,Male,Computer and Communication,4.0
+9372,tony,21,Male,Biomedical,3.0
+9373,ahmed,23,Male,Electromechanical,3.5

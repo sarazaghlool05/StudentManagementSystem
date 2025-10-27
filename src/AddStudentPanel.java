@@ -109,26 +109,26 @@ public class AddStudentPanel extends JPanel {
         add(ageField, c);
 
         // Row 2: Gender
-        c.gridx = 0; c.gridy = 3;
+        c.gridx = 0; c.gridy = 2;
         add(genderLabel, c);
         c.gridx = 1;
         add(genderBox, c);
 
         // Row 3: Department
-        c.gridx = 0; c.gridy = 4;
+        c.gridx = 0; c.gridy = 3;
         add(departmentLabel, c);
         c.gridx = 1;
         add(departmentBox, c);
 
 
         // Row 4: GPA
-        c.gridx = 0; c.gridy = 5;
+        c.gridx = 0; c.gridy = 4;
         add(GPALabel, c);
         c.gridx = 1;
         add(GPAField, c);
 
         // Row 5: Buttons
-        c.gridx = 0; c.gridy = 6;
+        c.gridx = 0; c.gridy = 5;
         add(clearButton, c);
         c.gridx = 1;
         add(addButton, c);
